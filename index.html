@@ -84,6 +84,16 @@ h1 .l:nth-child(3){animation-delay:.34s}
 .pc h3{font:600 22px Oswald;text-transform:uppercase}
 .pc p{font-size:12px;color:var(--gray)}
 .pc .go{margin-top:auto;padding-top:12px;font-size:11px;letter-spacing:.15em;text-transform:uppercase}
+.nn{display:flex;gap:10px;flex-wrap:wrap;margin:-8px 0 8px}
+.nn a{border:1px solid rgba(240,237,232,.25);padding:9px 16px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;color:var(--fg);text-decoration:none;transition:.3s;background:rgba(6,6,8,.5)}
+.nn a:hover{border-color:var(--acc);color:var(--acc)}
+.niche{margin-top:52px;scroll-margin-top:90px}
+.niche-h{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(240,237,232,.12);padding-top:22px;margin-bottom:20px}
+.niche-h em{font:600 11px Oswald;letter-spacing:.2em;color:var(--acc);font-style:normal}
+.niche-h h3{font:600 clamp(24px,3.2vw,38px) Oswald;text-transform:uppercase;margin-top:6px;line-height:1.1}
+.niche-h p{font-size:12px;color:var(--gray);margin-top:6px}
+.niche-h a{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--fg);text-decoration:none;border-bottom:1px solid var(--acc);padding-bottom:4px;white-space:nowrap}
+.niche-h a:hover{color:var(--acc)}
 .pc.new{border-style:dashed;border-color:rgba(124,156,255,.4);justify-content:center;align-items:center;text-align:center;min-height:280px;padding:30px}
 .pc.new h3{font-size:26px;margin:10px 0}
 .pc.new .go{color:var(--acc);margin-top:14px}
@@ -154,8 +164,9 @@ h1 .l:nth-child(3){animation-delay:.34s}
   <section class="s" id="s4"><div class="cw rv">
     <div class="tag">Примеры</div>
     <h2>Сайты для<br><span class="st">разных</span> бизнесов</h2>
-    <p class="body">Живые сайты — откройте любой и посмотрите, как он работает на компьютере и телефоне.</p>
-    <div class="pf" id="pf"></div>
+    <p class="body">Живые сайты по нишам — откройте любой и посмотрите, как он работает на компьютере и телефоне.</p>
+    <div class="nn" id="nn"></div>
+    <div id="pf"></div>
   </div></section>
 
   <section class="s h" id="s5"><div class="cw rv">
@@ -168,22 +179,32 @@ h1 .l:nth-child(3){animation-delay:.34s}
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
 <script>
-// ПРИМЕРЫ РАБОТ — чтобы добавить новый сайт, допишите строку и положите скриншот в папку img
-var WORKS=[
-  {niche:'Строительная компания',title:'Строй дом в России',tariff:'Старт',price:'15 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Stroy-dom/1-start/',img:'img/stroy-start.jpg'},
-  {niche:'Дома под ключ',title:'Строй дом в России',tariff:'Витрина',price:'25 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Stroy-dom/2-vitrina/',img:'img/stroy-vitrina.jpg'},
-  {niche:'Каталог проектов',title:'Строй дом в России',tariff:'Магазин',price:'55 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Stroy-dom/3-magazin/',img:'img/stroy-magazin.jpg'},
-  {niche:'Конфигуратор дома',title:'Строй дом в России',tariff:'Премиум',price:'от 100 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Stroy-dom/4-premium/',img:'img/stroy-premium.jpg'},
-  {niche:'3D-сайт стройки',title:'Строй дом в России',tariff:'Премиум+',price:'от 250 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Stroy-dom/5-premium-plus/',img:'img/stroy-premium-plus.jpg'},
-  {niche:'Цветочный магазин',title:'Цветы Копейск',tariff:'Старт',price:'15 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Cvety-kopeysk/1-start/',img:'img/cvety-start.jpg'},
-  {niche:'Салон флористики',title:'Цветы Копейск',tariff:'Витрина',price:'25 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Cvety-kopeysk/2-vitrina/',img:'img/cvety-vitrina.jpg'},
-  {niche:'Доставка букетов',title:'Цветы Копейск',tariff:'Магазин',price:'55 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Cvety-kopeysk/3-magazin/',img:'img/cvety-magazin.jpg'},
-  {niche:'Интернет-магазин',title:'Цветы Копейск',tariff:'Премиум',price:'от 100 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Cvety-kopeysk/4-premium/',img:'img/cvety-premium.jpg'}
+// ПРИМЕРЫ РАБОТ ПО НИШАМ — чтобы добавить сайт, допишите строку в works и положите скриншот в папку img
+var NICHES=[
+ {id:'n-stroy',title:'Строительство домов',company:'Строй дом в России',tariffs:'https://artemdobrovolskii1-bit.github.io/Stroy-dom/',works:[
+  {niche:'Сайт-визитка',tariff:'Старт',price:'15 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Stroy-dom/1-start/',img:'img/stroy-start.jpg'},
+  {niche:'Дома под ключ',tariff:'Витрина',price:'25 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Stroy-dom/2-vitrina/',img:'img/stroy-vitrina.jpg'},
+  {niche:'Каталог проектов',tariff:'Магазин',price:'55 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Stroy-dom/3-magazin/',img:'img/stroy-magazin.jpg'},
+  {niche:'Конфигуратор дома',tariff:'Премиум',price:'от 100 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Stroy-dom/4-premium/',img:'img/stroy-premium.jpg'},
+  {niche:'3D-сайт стройки',tariff:'Премиум+',price:'от 250 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Stroy-dom/5-premium-plus/',img:'img/stroy-premium-plus.jpg'}]},
+ {id:'n-cvety',title:'Цветочные магазины',company:'Цветы Копейск',tariffs:'https://artemdobrovolskii1-bit.github.io/Cvety-kopeysk/',works:[
+  {niche:'Цветочный магазин',tariff:'Старт',price:'15 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Cvety-kopeysk/1-start/',img:'img/cvety-start.jpg'},
+  {niche:'Салон флористики',tariff:'Витрина',price:'25 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Cvety-kopeysk/2-vitrina/',img:'img/cvety-vitrina.jpg'},
+  {niche:'Доставка букетов',tariff:'Магазин',price:'55 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Cvety-kopeysk/3-magazin/',img:'img/cvety-magazin.jpg'},
+  {niche:'Интернет-магазин',tariff:'Премиум',price:'от 100 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Cvety-kopeysk/4-premium/',img:'img/cvety-premium.jpg'}]},
+ {id:'n-remont',title:'Ремонт и отделка квартир',company:'РемКвартал',tariffs:'remont-kvartir/',works:[
+  {niche:'Сайт-визитка',tariff:'Старт',price:'15 000 ₽',url:'remont-kvartir/1-start/',img:'img/remont-start.jpg'},
+  {niche:'Ремонт под ключ',tariff:'Витрина',price:'25 000 ₽',url:'remont-kvartir/2-vitrina/',img:'img/remont-vitrina.jpg'},
+  {niche:'Каталог проектов',tariff:'Магазин',price:'55 000 ₽',url:'remont-kvartir/3-magazin/',img:'img/remont-magazin.jpg'},
+  {niche:'Бронь замера онлайн',tariff:'Премиум',price:'от 100 000 ₽',url:'remont-kvartir/4-premium/',img:'img/remont-premium.jpg'},
+  {niche:'3D-сайт ремонта',tariff:'Премиум+',price:'от 250 000 ₽',url:'remont-kvartir/5-premium-plus/',img:'img/remont-premium-plus.jpg'}]}
 ];
-document.getElementById('pf').innerHTML=WORKS.map(function(w){
-  return '<a class="pc" href="'+w.url+'" target="_blank" rel="noopener"><div class="im"><img src="'+w.img+'" alt="'+w.title+' — '+w.niche+'" loading="lazy"></div>'+
-    '<div class="in"><em>'+w.niche+'</em><h3>'+w.title+'</h3><p>Тариф «'+w.tariff+'» · '+w.price+'</p><span class="go">Открыть сайт →</span></div></a>'
-}).join('')+'<a class="pc new" href="#s5"><em>Ваша ниша</em><h3>Здесь может быть<br>ваш бизнес</h3><p>Подберу тариф под вашу сферу</p><span class="go">Обсудить проект →</span></a>';
+document.getElementById('nn').innerHTML=NICHES.map(function(n){return '<a href="#'+n.id+'">'+n.title+'</a>'}).join('');
+document.getElementById('pf').innerHTML=NICHES.map(function(n,k){
+  return '<div class="niche" id="'+n.id+'"><div class="niche-h"><div><em>0'+(k+1)+' · '+n.works.length+' сайт'+(n.works.length>4?'ов':'а')+'</em><h3>'+n.title+'</h3><p>Пример: «'+n.company+'» — от визитки до флагманского сайта</p></div><a href="'+n.tariffs+'" target="_blank" rel="noopener">Все тарифы ниши →</a></div><div class="pf">'+
+  n.works.map(function(w){return '<a class="pc" href="'+w.url+'" target="_blank" rel="noopener"><div class="im"><img src="'+w.img+'" alt="'+n.company+' — '+w.niche+'" loading="lazy"></div><div class="in"><em>'+w.niche+'</em><h3>'+n.company+'</h3><p>Тариф «'+w.tariff+'» · '+w.price+'</p><span class="go">Открыть сайт →</span></div></a>'}).join('')+'</div></div>'}).join('')+
+  '<div class="niche"><div class="pf"><a class="pc new" href="#s5"><em>Ваша ниша</em><h3>Здесь может быть<br>ваш бизнес</h3><p>Подберу тариф под вашу сферу</p><span class="go">Обсудить проект →</span></a></div></div>';
+document.querySelectorAll('#nn a').forEach(function(a){a.onclick=function(e){e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'})}});
 
 // nav + reveal + counters
 var ids=['s0','s1','s2','s3','s4','s5'],secs=ids.map(function(i){return document.getElementById(i)});
