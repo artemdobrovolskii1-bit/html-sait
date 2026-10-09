@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HTML_SAIT — сайты на чистом HTML</title>
+<meta name="description" content="Сайты на чистом HTML от 2 дней — без конструкторов и абонентской платы. Артём Добровольский, работаю удалённо с клиентами из любого города.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0c;--fg:#f0ede8;--acc:#7c9cff;--gray:#8a8a94;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:Inter,sans-serif;overflow-x:hidden}
+nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:24px 48px}
+nav::after{content:'';position:absolute;inset:0 0 auto;height:140px;background:linear-gradient(#0a0a0c 10%,rgba(10,10,12,.8) 50%,transparent);z-index:-1;pointer-events:none}
+.logo{font:600 13px Oswald;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;animation:fd .7s .2s both}
+.links{display:flex;gap:32px;align-items:center;animation:fd .7s .35s both}
+.links a{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--fg);text-decoration:none;opacity:.6;transition:.3s;cursor:pointer}
+.links a:hover,.links a.on{opacity:1;color:var(--acc)}
+.links a.cta{border:1px solid rgba(240,237,232,.3);padding:8px 20px;opacity:1;color:var(--fg)}
+.links a.cta:hover{background:var(--fg);color:#000}
+@keyframes fd{from{opacity:0;transform:translateY(-16px)}}
+@keyframes fu{from{opacity:0;transform:translateY(28px)}}
+@keyframes fi{from{opacity:0}}
+#bar{position:fixed;top:0;left:0;height:2px;background:var(--acc);z-index:200;width:0}
+#cw{position:fixed;inset:0;z-index:1;pointer-events:none}
+#cv{width:100%;height:100%;display:block}
+#vg{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse 75% 65% at 50% 55%,transparent 40%,rgba(10,10,12,.6) 70%,#0a0a0c 100%)}
+main{position:relative;z-index:10}
+.s{min-height:105vh;display:flex;align-items:center;padding:0 48px 60px;position:relative}
+.s.h{align-items:flex-end;min-height:100vh}
+.s.r{justify-content:flex-end;text-align:right}
+.s.c{justify-content:center;text-align:center}
+.tag{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--acc);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.r .tag{justify-content:flex-end}.c .tag{justify-content:center}
+.tag::before{content:'';width:24px;height:1px;background:var(--acc)}
+h1,h2{font-family:Oswald,sans-serif;text-transform:uppercase;font-weight:700;line-height:.95}
+h1{font-size:clamp(52px,11vw,170px);letter-spacing:-.01em}
+h2{font-size:clamp(38px,6vw,84px);margin-bottom:28px;line-height:1.08}
+.st{-webkit-text-stroke:1px var(--fg);color:transparent}
+h1 .l{display:block;animation:fu .9s cubic-bezier(.16,1,.3,1) both}
+h1 .l:nth-child(2){animation-delay:.17s}
+h1 .l:nth-child(3){animation-delay:.34s}
+.hs{position:absolute;right:48px;bottom:60px;text-align:right;animation:fi .8s 1s both}
+.hs p{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);line-height:2}
+.hs .y{color:var(--acc)}
+.sc{display:flex;align-items:center;gap:10px;justify-content:flex-end;margin-top:14px}
+.sc i{width:40px;height:1px;background:linear-gradient(to left,var(--acc),transparent);animation:sp 2s infinite}
+@keyframes sp{50%{transform:scaleX(1.3);opacity:.4}}
+.body{font-size:14px;line-height:1.8;color:rgba(240,237,232,.55);max-width:400px;margin-bottom:32px}
+.r .body{margin-left:auto}.c .body{margin-inline:auto}
+.box{max-width:520px}
+.list{list-style:none;margin-top:8px}
+.list li{display:flex;justify-content:space-between;gap:36px;padding:15px 0;border-bottom:1px solid rgba(240,237,232,.08);align-items:baseline}
+.list b{font:500 11px Inter;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)}
+.list span{font:600 20px Oswald}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:540px}
+.fi{background:rgba(6,6,8,.72);border:1px solid rgba(240,237,232,.07);padding:24px 22px;backdrop-filter:blur(6px);text-align:left}
+.fi em{font:600 11px Oswald;letter-spacing:.2em;color:var(--acc);font-style:normal}
+.fi h3{font:600 18px Oswald;text-transform:uppercase;margin:8px 0}
+.fi p{font-size:11px;line-height:1.7;color:rgba(240,237,232,.5)}
+.row{display:flex;gap:40px;margin-top:30px;padding-top:30px;border-top:1px solid rgba(240,237,232,.08)}
+.c .row{justify-content:center;flex-wrap:wrap}
+.row div span{display:block;font:700 44px Oswald}
+.row div small{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gray)}
+.big{font-size:clamp(30px,4.5vw,60px);max-width:820px}
+.btn{display:inline-flex;gap:14px;align-items:center;background:var(--acc);color:#000;text-decoration:none;padding:18px 40px;font:600 12px Inter;letter-spacing:.15em;text-transform:uppercase;pointer-events:all;transition:.3s}
+.btn:hover{background:var(--fg);transform:translateY(-2px)}
+.bt{display:flex;justify-content:space-between;align-items:flex-end;margin-top:40px;padding-top:28px;border-top:1px solid rgba(240,237,232,.1);gap:20px;flex-wrap:wrap}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid rgba(240,237,232,.3)}
+.btn.ghost:hover{background:var(--fg);color:#000}
+.ct{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.contacts a{color:var(--fg);text-decoration:none;border-bottom:1px solid rgba(240,237,232,.25)}
+.contacts a:hover{color:var(--acc);border-color:var(--acc)}
+.bt p{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,237,232,.3)}
+.cw{width:100%}
+.pf{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.pc{display:flex;flex-direction:column;background:rgba(6,6,8,.78);border:1px solid rgba(240,237,232,.08);backdrop-filter:blur(6px);color:var(--fg);text-decoration:none;overflow:hidden;transition:border-color .3s,transform .3s}
+.pc:hover{border-color:var(--acc);transform:translateY(-4px)}
+.pc .im{aspect-ratio:16/11;overflow:hidden;background:#15151a}
+.pc img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .6s}
+.pc:hover img{transform:scale(1.04)}
+.pc .in{padding:18px 20px 20px;display:flex;flex-direction:column;gap:6px;flex:1}
+.pc em{font:600 10px Inter;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);font-style:normal}
+.pc h3{font:600 22px Oswald;text-transform:uppercase}
+.pc p{font-size:12px;color:var(--gray)}
+.pc .go{margin-top:auto;padding-top:12px;font-size:11px;letter-spacing:.15em;text-transform:uppercase}
+.pc.new{border-style:dashed;border-color:rgba(124,156,255,.4);justify-content:center;align-items:center;text-align:center;min-height:280px;padding:30px}
+.pc.new h3{font-size:26px;margin:10px 0}
+.pc.new .go{color:var(--acc);margin-top:14px}
+.rv{opacity:0;transform:translateY(36px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.rv.v{opacity:1;transform:none}
+@media(max-width:1100px){.hs{display:none}}
+@media(max-width:768px){nav{padding:18px 22px}.links a:not(.cta){display:none}.s{padding:0 22px 50px}.hs{display:none}.fg{grid-template-columns:1fr}.row{gap:22px}.s.r{text-align:left;justify-content:flex-start}.r .tag{justify-content:flex-start}.r .body{margin-left:0}.s{background:linear-gradient(90deg,rgba(10,10,12,.6),transparent)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<nav>
+  <div class="logo" onclick="scrollTo({top:0,behavior:'smooth'})">HTML_SAIT / Сайты на HTML</div>
+  <div class="links">
+    <a data-s="s1">Почему HTML</a><a data-s="s2">Процесс</a><a data-s="s3">Тарифы</a><a data-s="s4">Примеры</a><a class="cta" data-s="s5">Заказать</a>
+  </div>
+</nav>
+<div id="cw"><canvas id="cv"></canvas></div><div id="vg"></div>
+
+<main>
+  <section class="s h" id="s0">
+    <div><h1><span class="l">Сайты на</span><span class="l">чистом <span class="st">HTML</span></span><span class="l">от 2 дней</span></h1></div>
+    <div class="hs"><p class="y">HTML_SAIT — 2026</p><p>Без конструкторов</p><p>Без абонентской платы</p><div class="sc"><i></i><p>Листайте</p></div></div>
+  </section>
+
+  <section class="s" id="s1"><div class="box rv">
+    <div class="tag">Почему HTML</div>
+    <h2>Сайт ваш<br>навсегда</h2>
+    <p class="body">Привет! Я Артём, делаю сайты для малого и среднего бизнеса. Работаю удалённо — с клиентами из любого города.</p>
+    <ul class="list">
+      <li><b>Абонентская плата</b><span>0 ₽ в месяц</span></li>
+      <li><b>Загрузка сайта</b><span>~1 секунда</span></li>
+      <li><b>Хостинг</b><span>бесплатно</span></li>
+      <li><b>Дизайн</b><span>без шаблонов</span></li>
+      <li><b>Удобство на телефоне</b><span>из коробки</span></li>
+    </ul>
+  </div></section>
+
+  <section class="s r" id="s2"><div class="box rv">
+    <div class="tag">Процесс</div>
+    <h2>Четыре шага<br>до запуска</h2>
+    <div class="fg">
+      <div class="fi"><em>01</em><h3>Заявка и бриф</h3><p>Расскажите, чем занимается ваш бизнес, — подскажу подходящий тариф и сроки.</p></div>
+      <div class="fi"><em>02</em><h3>Макет</h3><p>Показываю, как будет выглядеть сайт, и согласую его с вами.</p></div>
+      <div class="fi"><em>03</em><h3>Сайт</h3><p>Верстаю на чистом HTML: быстро, адаптивно под телефон, любой дизайн.</p></div>
+      <div class="fi"><em>04</em><h3>Публикация</h3><p>Публикую сайт и передаю вам все доступы — он полностью ваш.</p></div>
+    </div>
+  </div></section>
+
+  <section class="s" id="s3"><div class="box rv">
+    <div class="tag">Тарифы</div>
+    <h2>Четыре<br>тарифа</h2>
+    <ul class="list">
+      <li><b>Старт · 2–3 дня</b><span>15 000 ₽</span></li>
+      <li><b>Витрина · 4–6 дней</b><span>25 000 ₽</span></li>
+      <li><b>Магазин · 7–10 дней</b><span>55 000 ₽</span></li>
+      <li><b>Премиум · 15–30 дней</b><span>от 100 000 ₽</span></li>
+    </ul>
+    <p class="body" style="margin-top:24px">Старт — сайт-визитка. Витрина — продающий лендинг с каталогом. Магазин — каталог, фильтры, корзина. Премиум — онлайн-оплата, доставка, промокоды. Консультация и подбор тарифа — бесплатно.</p>
+    <div class="row">
+      <div><span data-n="2" data-s=" дня">0</span><small>минимальный срок</small></div>
+      <div><span data-n="0" data-s=" ₽">0</span><small>абонентская плата</small></div>
+      <div><span data-n="1" data-s=" сек">0</span><small>загрузка сайта</small></div>
+    </div>
+  </div></section>
+
+  <section class="s" id="s4"><div class="cw rv">
+    <div class="tag">Примеры</div>
+    <h2>Сайты для<br><span class="st">разных</span> бизнесов</h2>
+    <p class="body">Живые сайты — откройте любой и посмотрите, как он работает на компьютере и телефоне.</p>
+    <div class="pf" id="pf"></div>
+  </div></section>
+
+  <section class="s h" id="s5"><div class="cw rv">
+    <div class="tag">Ваш сайт</div>
+    <h2 style="font-size:clamp(52px,11vw,150px);line-height:1.12">Обсудим<br><span class="st">ваш проект</span></h2>
+    <p class="body contacts">Напишите, чем занимается ваш бизнес, — подскажу подходящий тариф и сроки.<br><a href="tel:+79080647597">+7 (908) 064-75-97</a> · <a href="mailto:artemdobrovolskii@gmail.com">artemdobrovolskii@gmail.com</a></p>
+    <div class="bt"><div class="ct"><a class="btn" href="https://vk.me/html_sait174" target="_blank" rel="noopener">Написать во ВКонтакте →</a><a class="btn ghost" href="https://vk.ru/html_sait174" target="_blank" rel="noopener">Группа ВК</a></div><p>HTML_SAIT © 2026<br>Артём Добровольский · Сайты на HTML</p></div>
+  </div></section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+<script>
+// ПРИМЕРЫ РАБОТ — чтобы добавить новый сайт, допишите строку и положите скриншот в папку img
+var WORKS=[
+  {niche:'Цветочный магазин',title:'Цветы Копейск',tariff:'Старт',price:'15 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Cvety-kopeysk/1-start/',img:'img/cvety-start.jpg'},
+  {niche:'Салон флористики',title:'Цветы Копейск',tariff:'Витрина',price:'25 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Cvety-kopeysk/2-vitrina/',img:'img/cvety-vitrina.jpg'},
+  {niche:'Доставка букетов',title:'Цветы Копейск',tariff:'Магазин',price:'55 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Cvety-kopeysk/3-magazin/',img:'img/cvety-magazin.jpg'},
+  {niche:'Интернет-магазин',title:'Цветы Копейск',tariff:'Премиум',price:'от 100 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Cvety-kopeysk/4-premium/',img:'img/cvety-premium.jpg'}
+];
+document.getElementById('pf').innerHTML=WORKS.map(function(w){
+  return '<a class="pc" href="'+w.url+'" target="_blank" rel="noopener"><div class="im"><img src="'+w.img+'" alt="'+w.title+' — '+w.niche+'" loading="lazy"></div>'+
+    '<div class="in"><em>'+w.niche+'</em><h3>'+w.title+'</h3><p>Тариф «'+w.tariff+'» · '+w.price+'</p><span class="go">Открыть сайт →</span></div></a>'
+}).join('')+'<a class="pc new" href="#s5"><em>Ваша ниша</em><h3>Здесь может быть<br>ваш бизнес</h3><p>Подберу тариф под вашу сферу</p><span class="go">Обсудить проект →</span></a>';
+
+// nav + reveal + counters
+var ids=['s0','s1','s2','s3','s4','s5'],secs=ids.map(function(i){return document.getElementById(i)});
+document.querySelectorAll('[data-s]').forEach(function(a){a.onclick=function(){document.getElementById(a.dataset.s).scrollIntoView({behavior:'smooth'})}});
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('v');
+x.target.querySelectorAll('[data-n]').forEach(function(el){if(el.done)return;el.done=1;var t=+el.dataset.n,s=performance.now();(function f(n){var p=Math.min((n-s)/1800,1);el.textContent=Math.floor((1-Math.pow(1-p,3))*t)+(p>=1?el.dataset.s:'');if(p<1)requestAnimationFrame(f)})(s)})}})},{threshold:.2});
+document.querySelectorAll('.rv').forEach(function(e){io.observe(e)});
+
+// 3D scene: нейросеть, камера управляется скроллом
+var cv=document.getElementById('cv'),R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});
+R.setPixelRatio(Math.min(devicePixelRatio,1.5));R.setSize(innerWidth,innerHeight);
+var sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(45,innerWidth/innerHeight,.1,100);
+var G=new THREE.Group();sc.add(G);
+var ACC=0x7c9cff,ACC2=0xb57cff;
+var core=new THREE.Mesh(new THREE.IcosahedronGeometry(1,2),new THREE.MeshBasicMaterial({color:ACC,wireframe:true,transparent:true,opacity:.5}));G.add(core);
+var inner=new THREE.Mesh(new THREE.IcosahedronGeometry(.45,1),new THREE.MeshBasicMaterial({color:ACC2,wireframe:true}));G.add(inner);
+var pts=[],N=200;for(var i=0;i<N;i++){var u=Math.random()*6.283,v=Math.acos(2*Math.random()-1),r=1.5+Math.random()*1.1;pts.push(new THREE.Vector3(r*Math.sin(v)*Math.cos(u),r*Math.sin(v)*Math.sin(u),r*Math.cos(v)))}
+var pg=new THREE.BufferGeometry().setFromPoints(pts);
+G.add(new THREE.Points(pg,new THREE.PointsMaterial({color:0xffffff,size:.05,transparent:true,opacity:.9})));
+var lp=[];for(var i=0;i<N;i++)for(var j=i+1;j<N;j++)if(pts[i].distanceTo(pts[j])<.75&&lp.length<1800){lp.push(pts[i],pts[j])}
+G.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(lp),new THREE.LineBasicMaterial({color:ACC,transparent:true,opacity:.22})));
+var ring=new THREE.Mesh(new THREE.TorusGeometry(3.1,.008,8,200),new THREE.MeshBasicMaterial({color:ACC2}));ring.rotation.x=1.2;G.add(ring);
+var ring2=ring.clone();ring2.scale.setScalar(.8);ring2.rotation.set(.4,0,1);G.add(ring2);
+
+// ключевые кадры по секциям: x — сдвиг объекта, cy/cz — камера, fov, yaw — поворот
+var K=[{x:1.9,cy:.3,cz:7,fov:45,yaw:0,tilt:0},{x:-1.9,cy:.6,cz:5.5,fov:38,yaw:1.4,tilt:.3},{x:2,cy:-.4,cz:4.6,fov:30,yaw:2.8,tilt:-.3},{x:-1.8,cy:2.4,cz:5.4,fov:36,yaw:4.2,tilt:.6},{x:0,cy:0,cz:10,fov:50,yaw:5.6,tilt:0},{x:0,cy:.4,cz:3.4,fov:34,yaw:7.2,tilt:.2}];
+var cur={x:1.9,cy:.3,cz:7,fov:45,yaw:0,tilt:0},sy=0;
+addEventListener('scroll',function(){sy=scrollY},{passive:true});
+function lp2(a,b,t){return a+(b-a)*t}
+function ease(t){return 1-Math.pow(1-t,3)}
+var bar=document.getElementById('bar'),links=document.querySelectorAll('[data-s]');
+function frame(){requestAnimationFrame(frame);
+ var tot=document.body.scrollHeight-innerHeight;bar.style.width=Math.min(sy/tot,1)*100+'%';
+ var idx=0,t=0;for(var i=0;i<secs.length-1;i++){var a=secs[i].offsetTop,b=secs[i+1].offsetTop;if(sy<b){idx=i;t=ease(Math.max(0,Math.min((sy-a)/(b-a),1)));break}idx=secs.length-1;t=1}
+ var A=K[idx],B=K[Math.min(idx+1,K.length-1)],asp=Math.min(1,innerWidth/innerHeight/1.4);
+ for(var k in cur){var tg=lp2(A[k],B[k],t);if(k=='x')tg*=asp;cur[k]=lp2(cur[k],tg,.05)}
+ G.position.x=cur.x;G.rotation.y=cur.yaw+performance.now()*.00008;G.rotation.x=cur.tilt;
+ inner.rotation.y-=.004;ring.rotation.z+=.002;ring2.rotation.y+=.003;
+ cam.fov=cur.fov;cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();cam.position.set(0,cur.cy,cur.cz);cam.lookAt(0,0,0);
+ R.render(sc,cam);
+ var mid=innerHeight*.45,c=ids[0];ids.forEach(function(id){if(document.getElementById(id).getBoundingClientRect().top<=mid)c=id});
+ links.forEach(function(a){a.classList.toggle('on',a.dataset.s==c)})}
+frame();
+addEventListener('resize',function(){R.setSize(innerWidth,innerHeight)});
+</script>
+</body>
+</html>
