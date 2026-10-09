@@ -210,8 +210,9 @@ document.querySelectorAll('#nn a').forEach(function(a){a.onclick=function(e){e.p
 var ids=['s0','s1','s2','s3','s4','s5'],secs=ids.map(function(i){return document.getElementById(i)});
 document.querySelectorAll('[data-s]').forEach(function(a){a.onclick=function(){document.getElementById(a.dataset.s).scrollIntoView({behavior:'smooth'})}});
 var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('v');
-x.target.querySelectorAll('[data-n]').forEach(function(el){if(el.done)return;el.done=1;var t=+el.dataset.n,s=performance.now();(function f(n){var p=Math.min((n-s)/1800,1);el.textContent=Math.floor((1-Math.pow(1-p,3))*t)+(p>=1?el.dataset.s:'');if(p<1)requestAnimationFrame(f)})(s)})}})},{threshold:.2});
+x.target.querySelectorAll('[data-n]').forEach(function(el){if(el.done)return;el.done=1;var t=+el.dataset.n,s=performance.now();(function f(n){var p=Math.min((n-s)/1800,1);el.textContent=Math.floor((1-Math.pow(1-p,3))*t)+(p>=1?el.dataset.s:'');if(p<1)requestAnimationFrame(f)})(s)})}})},{threshold:0,rootMargin:'0px 0px -12% 0px'});
 document.querySelectorAll('.rv').forEach(function(e){io.observe(e)});
+setTimeout(function(){document.querySelectorAll('.rv:not(.v)').forEach(function(e){var r=e.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)e.classList.add('v')})},1500);
 
 // 3D scene: нейросеть, камера управляется скроллом
 var cv=document.getElementById('cv'),R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});
