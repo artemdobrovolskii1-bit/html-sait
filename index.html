@@ -55,6 +55,8 @@ h1 .l:nth-child(3){animation-delay:.34s}
 .list li{display:flex;justify-content:space-between;gap:36px;padding:15px 0;border-bottom:1px solid rgba(240,237,232,.08);align-items:baseline}
 .list b{font:500 11px Inter;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)}
 .list span{font:600 20px Oswald}
+.list span{white-space:nowrap}
+.list .d{display:block;margin-top:6px;font-size:13px;line-height:1.5;color:rgba(240,237,232,.6)}
 .fg{display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:540px}
 .fi{background:rgba(6,6,8,.72);border:1px solid rgba(240,237,232,.07);padding:24px 22px;backdrop-filter:blur(6px);text-align:left}
 .fi em{font:600 11px Oswald;letter-spacing:.2em;color:var(--acc);font-style:normal}
@@ -150,13 +152,13 @@ h1 .l:nth-child(3){animation-delay:.34s}
     <div class="tag">Тарифы</div>
     <h2>Пять<br>тарифов</h2>
     <ul class="list">
-      <li><b>Старт · 2–3 дня</b><span>15 000 ₽</span></li>
-      <li><b>Витрина · 3–5 дней</b><span>25 000 ₽</span></li>
-      <li><b>Магазин · 5–7 дней</b><span>55 000 ₽</span></li>
-      <li><b>Премиум · 10–20 дней</b><span>от 100 000 ₽</span></li>
-      <li><b>Премиум+ · 20–60 дней</b><span>от 250 000 ₽</span></li>
+      <li><div><b>Старт · 2–3 дня</b><small class="d">Сайт-визитка</small></div><span>15 000 ₽</span></li>
+      <li><div><b>Витрина · 3–5 дней</b><small class="d">Продающий лендинг с каталогом</small></div><span>25 000 ₽</span></li>
+      <li><div><b>Магазин · 5–7 дней</b><small class="d">Каталог, фильтры, корзина</small></div><span>55 000 ₽</span></li>
+      <li><div><b>Премиум · 10–20 дней</b><small class="d">Онлайн-оплата, доставка, промокоды</small></div><span>от 100 000 ₽</span></li>
+      <li><div><b>Премиум+ · 20–60 дней</b><small class="d">Флагманский сайт с 3D-анимацией, конфигуратором и личным кабинетом клиента</small></div><span>от 250 000 ₽</span></li>
     </ul>
-    <p class="body" style="margin-top:24px">Старт — сайт-визитка. Витрина — продающий лендинг с каталогом. Магазин — каталог, фильтры, корзина. Премиум — онлайн-оплата, доставка, промокоды. Премиум+ — флагманский сайт с 3D-анимацией, конфигуратором и личным кабинетом клиента. Консультация и подбор тарифа — бесплатно.</p>
+    <p class="body" style="margin-top:24px">Консультация и подбор тарифа — бесплатно.</p>
     <div class="row">
       <div><span data-n="2" data-s=" дня">0</span><small>минимальный срок</small></div>
       <div><span data-n="0" data-s=" ₽">0</span><small>абонентская плата</small></div>
