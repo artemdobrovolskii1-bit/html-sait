@@ -83,7 +83,6 @@ h1 .l:nth-child(3){animation-delay:.34s}
 .pf::-webkit-scrollbar{height:6px}.pf::-webkit-scrollbar-track{background:rgba(240,237,232,.06)}.pf::-webkit-scrollbar-thumb{background:rgba(124,156,255,.6);border-radius:3px}
 .pf>.pc{flex:0 0 360px;scroll-snap-align:start}
 .ar{display:flex;gap:8px;align-items:center}
-.ar a{margin-right:12px}
 .ar button{width:40px;height:40px;border:1px solid rgba(240,237,232,.25);background:rgba(6,6,8,.5);color:var(--fg);font-size:16px;cursor:pointer;transition:.3s}
 .ar button:hover{border-color:var(--acc);color:var(--acc)}
 @media(max-width:768px){.pf{margin:0 -22px;padding:6px 22px 16px;scroll-padding-left:22px}.pf>.pc{flex-basis:78vw}.ar button{display:none}}
@@ -221,7 +220,7 @@ var NICHES=[
 ];
 document.getElementById('nn').innerHTML=NICHES.map(function(n){return '<a href="#'+n.id+'">'+n.title+'</a>'}).join('');
 document.getElementById('pf').innerHTML=NICHES.map(function(n,k){
-  return '<div class="niche" id="'+n.id+'"><div class="niche-h"><div><em>0'+(k+1)+' · '+n.works.length+' сайт'+(n.works.length>4?'ов':'а')+'</em><h3>'+n.title+'</h3><p>Пример: «'+n.company+'» — от визитки до флагманского сайта</p></div><div class="ar"><a href="'+n.tariffs+'" target="_blank" rel="noopener">Все тарифы ниши →</a><button type="button" aria-label="Назад" data-d="-1">←</button><button type="button" aria-label="Вперёд" data-d="1">→</button></div></div><div class="pf">'+
+  return '<div class="niche" id="'+n.id+'"><div class="niche-h"><div><em>0'+(k+1)+' · '+n.works.length+' сайт'+(n.works.length>4?'ов':'а')+'</em><h3>'+n.title+'</h3><p>Пример: «'+n.company+'» — от визитки до флагманского сайта</p></div><div class="ar"><button type="button" aria-label="Назад" data-d="-1">←</button><button type="button" aria-label="Вперёд" data-d="1">→</button></div></div><div class="pf">'+
   n.works.map(function(w){return '<a class="pc" href="'+w.url+'" target="_blank" rel="noopener"><div class="im"><img src="'+w.img+'" alt="'+n.company+' — '+w.niche+'" loading="lazy"></div><div class="in"><em>'+w.niche+'</em><h3>'+n.company+'</h3><p>Тариф «'+w.tariff+'» · '+w.price+'</p><span class="go">Открыть сайт →</span></div></a>'}).join('')+'</div></div>'}).join('')+
   '<div class="niche"><div class="pf"><a class="pc new" href="#s5"><em>Ваша ниша</em><h3>Здесь может быть<br>ваш бизнес</h3><p>Подберу тариф под вашу сферу</p><span class="go">Обсудить проект →</span></a></div></div>';
 document.querySelectorAll('.ar button').forEach(function(b){b.onclick=function(){var r=b.closest('.niche').querySelector('.pf');var c=r.querySelector('.pc');r.scrollBy({left:(+b.dataset.d)*((c?c.offsetWidth:300)+16),behavior:'smooth'})}});
