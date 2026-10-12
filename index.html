@@ -65,6 +65,8 @@ h1 .l:nth-child(3){animation-delay:.34s}
 .row{display:flex;gap:40px;margin-top:30px;padding-top:30px;border-top:1px solid rgba(240,237,232,.08)}
 .c .row{justify-content:center;flex-wrap:wrap}
 .row div span{display:block;font:700 44px Oswald}
+.row div span{white-space:nowrap}
+@media(max-width:480px){.row div span{font-size:30px}.row{gap:18px}}
 .row div small{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gray)}
 .big{font-size:clamp(30px,4.5vw,60px);max-width:820px}
 .btn{display:inline-flex;gap:14px;align-items:center;background:var(--acc);color:#000;text-decoration:none;padding:18px 40px;font:600 12px Inter;letter-spacing:.15em;text-transform:uppercase;pointer-events:all;transition:.3s}
@@ -161,8 +163,8 @@ h1 .l:nth-child(3){animation-delay:.34s}
     <p class="body" style="margin-top:24px">Консультация и подбор тарифа — бесплатно.</p>
     <div class="row">
       <div><span data-n="2" data-s=" дня">0</span><small>минимальный срок</small></div>
-      <div><span data-n="0" data-s=" ₽">0</span><small>абонентская плата</small></div>
-      <div><span data-n="1" data-s=" сек">0</span><small>загрузка сайта</small></div>
+      <div><span data-n="0" data-s=" ₽">0</span><small>оплата хостинга</small></div>
+      <div><span data-n="1" data-s=" сек" data-p="от ">0</span><small>загрузка сайта</small></div>
     </div>
   </div></section>
 
@@ -221,7 +223,7 @@ document.querySelectorAll('#nn a').forEach(function(a){a.onclick=function(e){e.p
 var ids=['s0','s1','s2','s3','s4','s5'],secs=ids.map(function(i){return document.getElementById(i)});
 document.querySelectorAll('[data-s]').forEach(function(a){a.onclick=function(){document.getElementById(a.dataset.s).scrollIntoView({behavior:'smooth'})}});
 var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('v');
-x.target.querySelectorAll('[data-n]').forEach(function(el){if(el.done)return;el.done=1;var t=+el.dataset.n,s=performance.now();(function f(n){var p=Math.min((n-s)/1800,1);el.textContent=Math.floor((1-Math.pow(1-p,3))*t)+(p>=1?el.dataset.s:'');if(p<1)requestAnimationFrame(f)})(s)})}})},{threshold:0,rootMargin:'0px 0px -12% 0px'});
+x.target.querySelectorAll('[data-n]').forEach(function(el){if(el.done)return;el.done=1;var t=+el.dataset.n,s=performance.now();(function f(n){var p=Math.min((n-s)/1800,1);el.textContent=(el.dataset.p||'')+Math.floor((1-Math.pow(1-p,3))*t)+(p>=1?el.dataset.s:'');if(p<1)requestAnimationFrame(f)})(s)})}})},{threshold:0,rootMargin:'0px 0px -12% 0px'});
 document.querySelectorAll('.rv').forEach(function(e){io.observe(e)});
 setTimeout(function(){document.querySelectorAll('.rv:not(.v)').forEach(function(e){var r=e.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)e.classList.add('v')})},1500);
 
