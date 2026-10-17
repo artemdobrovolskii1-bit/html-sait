@@ -100,6 +100,7 @@ h1 .l:nth-child(3){animation-delay:.34s}
 .pc em{font:600 10px Inter;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);font-style:normal}
 .pc h3{font:600 22px Oswald;text-transform:uppercase}
 .pc p{font-size:12px;color:var(--gray)}
+.pc p.ds{margin-top:8px;line-height:1.45;color:var(--gray)}
 .pc .go{margin-top:auto;padding-top:12px;font-size:11px;letter-spacing:.15em;text-transform:uppercase}
 .nn{display:flex;gap:10px;flex-wrap:wrap;margin:-8px 0 8px}
 .nn a{border:1px solid rgba(240,237,232,.25);padding:9px 16px;font-size:11px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;color:var(--fg);text-decoration:none;transition:.3s;background:rgba(6,6,8,.5)}
@@ -200,6 +201,9 @@ h1 .l:nth-child(3){animation-delay:.34s}
 <script>
 // ПРИМЕРЫ РАБОТ ПО НИШАМ — чтобы добавить сайт, допишите строку в works и положите скриншот в папку img
 var NICHES=[
+ {id:'n-repetitor',title:'Репетиторы',company:'Анна Сыромятникова',sub:'Реальный клиент: учитель русского языка и литературы, Касли',works:[
+  {niche:'Репетитор по русскому и литературе',tariff:'Витрина + доп. услуги',price:'34 500 ₽',url:'https://artemdobrovolskii1-bit.github.io/repetitor-kasli/',img:'img/repetitor-kasli.jpg',
+   desc:'Лендинг с ценами по классам, тестом на ударения и заявкой во ВКонтакте; связь через ВК, MAX и телефон; эмблема, обработка фото, SEO и GEO: разметка, карта сайта, превью для мессенджеров.'}]},
  {id:'n-stroy',title:'Строительство домов',company:'Строй дом в России',tariffs:'https://artemdobrovolskii1-bit.github.io/Stroy-dom/',works:[
   {niche:'Сайт-визитка',tariff:'Старт',price:'15 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Stroy-dom/1-start/',img:'img/stroy-start.jpg'},
   {niche:'Дома под ключ',tariff:'Витрина',price:'25 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Stroy-dom/2-vitrina/',img:'img/stroy-vitrina.jpg'},
@@ -226,8 +230,8 @@ var NICHES=[
 ];
 document.getElementById('nn').innerHTML=NICHES.map(function(n){return '<a href="#'+n.id+'">'+n.title+'</a>'}).join('');
 document.getElementById('pf').innerHTML=NICHES.map(function(n,k){
-  return '<div class="niche" id="'+n.id+'"><div class="niche-h"><div><h3>'+(k+1)+' '+n.title+' <span class="cnt">— '+n.works.length+' сайт'+(n.works.length>4?'ов':'а')+'</span></h3><p>Пример: «'+n.company+'» — от визитки до флагманского сайта</p></div><div class="ar"><button type="button" aria-label="Назад" data-d="-1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button><button type="button" aria-label="Вперёд" data-d="1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div></div><div class="pf">'+
-  n.works.map(function(w){return '<a class="pc" href="'+w.url+'?from=portfolio" target="_blank" rel="noopener"><div class="im"><img src="'+w.img+'" alt="'+n.company+' — '+w.niche+'" loading="lazy"></div><div class="in"><em>'+w.niche+'</em><h3>'+n.company+'</h3><p>Тариф «'+w.tariff+'» · '+w.price+'</p><span class="go">Открыть сайт →</span></div></a>'}).join('')+'</div></div>'}).join('')+
+  return '<div class="niche" id="'+n.id+'"><div class="niche-h"><div><h3>'+(k+1)+' '+n.title+' <span class="cnt">— '+n.works.length+' сайт'+(n.works.length==1?'':n.works.length>4?'ов':'а')+'</span></h3><p>'+(n.sub||('Пример: «'+n.company+'» — от визитки до флагманского сайта'))+'</p></div><div class="ar"><button type="button" aria-label="Назад" data-d="-1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button><button type="button" aria-label="Вперёд" data-d="1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div></div><div class="pf">'+
+  n.works.map(function(w){return '<a class="pc" href="'+w.url+'?from=portfolio" target="_blank" rel="noopener"><div class="im"><img src="'+w.img+'" alt="'+n.company+' — '+w.niche+'" loading="lazy"></div><div class="in"><em>'+w.niche+'</em><h3>'+n.company+'</h3><p>Тариф «'+w.tariff+'» · '+w.price+'</p>'+(w.desc?'<p class="ds">'+w.desc+'</p>':'')+'<span class="go">Открыть сайт →</span></div></a>'}).join('')+'</div></div>'}).join('')+
   '<div class="niche"><div class="pf"><a class="pc new" href="#s5"><em>Ваша ниша</em><h3>Здесь может быть<br>ваш бизнес</h3><p>Подберу тариф под вашу сферу</p><span class="go">Обсудить проект →</span></a></div></div>';
 document.querySelectorAll('.ar button').forEach(function(b){b.onclick=function(){var r=b.closest('.niche').querySelector('.pf');var c=r.querySelector('.pc');r.scrollBy({left:(+b.dataset.d)*((c?c.offsetWidth:300)+16),behavior:'smooth'})}});
 document.querySelectorAll('#nn a').forEach(function(a){a.onclick=function(e){e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'})}});
