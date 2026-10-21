@@ -47,6 +47,19 @@ h2{font-size:clamp(38px,6vw,84px);margin-bottom:28px;line-height:1.08}
 h1 .l{display:block;animation:fu .9s cubic-bezier(.16,1,.3,1) both}
 h1 .l:nth-child(2){animation-delay:.17s}
 h1 .l:nth-child(3){animation-delay:.34s}
+.hero{max-width:1100px}
+.lead{font-size:clamp(15px,1.4vw,18px);line-height:1.7;color:rgba(240,237,232,.7);max-width:560px;margin:28px auto 36px;animation:fi .8s .55s both}
+.hb{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fi .8s .7s both}
+.mq{position:absolute;left:0;right:0;bottom:34px;animation:fi .8s 1s both}
+.mq-t{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gray);margin-bottom:14px}
+.mq-w{overflow:hidden;border-top:1px solid rgba(240,237,232,.1);border-bottom:1px solid rgba(240,237,232,.1);padding:14px 0;-webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.mq-r{display:flex;width:max-content;animation:mq 40s linear infinite}
+.mq-w:hover .mq-r{animation-play-state:paused}
+.mq-r a{font:500 clamp(16px,1.6vw,22px) Oswald;text-transform:uppercase;letter-spacing:.06em;color:var(--fg);opacity:.55;text-decoration:none;white-space:nowrap;padding:0 22px;transition:opacity .3s,color .3s}
+.mq-r a::after{content:'✦';color:var(--acc);font-size:.6em;margin-left:44px;vertical-align:.25em;opacity:.8}
+.mq-r a:hover{opacity:1;color:var(--acc)}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media(max-width:768px){#s0 h1{font-size:11.5vw}.hb .btn{width:100%;justify-content:center}.hb{max-width:340px;margin:0 auto}}
 .hs{position:absolute;right:48px;bottom:60px;text-align:right;animation:fi .8s 1s both}
 .hs p{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);line-height:2}
 .hs .y{color:var(--acc)}
@@ -120,7 +133,7 @@ h1 .l:nth-child(3){animation-delay:.34s}
 .rv.v{opacity:1;transform:none}
 @media(max-width:1100px){.hs{display:none}}
 @media(max-width:768px){nav{padding:18px 22px}.links a:not(.cta){display:none}.s{padding:0 22px 50px}.hs{display:none}.fg{grid-template-columns:1fr}.row{gap:22px}.s.r{text-align:left;justify-content:flex-start}.r .tag{justify-content:flex-start}.r .body{margin-left:0}.s{background:linear-gradient(90deg,rgba(10,10,12,.6),transparent)}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.mq-r{flex-wrap:wrap;justify-content:center;width:auto}.mq-w{-webkit-mask:none;mask:none}.rv{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -135,8 +148,12 @@ h1 .l:nth-child(3){animation-delay:.34s}
 
 <main>
   <section class="s h" id="s0">
-    <div><h1><span class="l">Сайты на чистом</span><span class="l"><span class="st">HTML</span>-коде</span><span class="l">от 2 дней</span></h1></div>
-    <div class="hs"><p class="y">HTML_SAIT — 2026</p><p>Без конструкторов</p><p>Без абонентской платы</p><div class="sc"><i></i><p>Листайте</p></div></div>
+    <div class="hero">
+      <h1><span class="l">Сайты для</span><span class="l">вашего <span class="st">бизнеса</span></span></h1>
+      <p class="lead">От 2 дней и от 15 000 ₽. Сайт ваш навсегда — без конструкторов и абонентской платы.</p>
+      <div class="hb"><a class="btn" href="#s5">Рассчитать стоимость →</a><a class="btn ghost" href="#s4">Смотреть работы</a></div>
+    </div>
+    <div class="mq" aria-label="Ниши, для которых уже есть сайты"><p class="mq-t">Уже сделали сайты для</p><div class="mq-w"><div class="mq-r" id="mq"></div></div></div>
   </section>
 
   <section class="s" id="s1"><div class="box rv">
@@ -246,6 +263,9 @@ var NICHES=[
   {niche:'Конфигуратор окна',tariff:'Премиум',price:'от 100 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Okna-PVH/4-premium/',img:'img/okna-premium.jpg'},
   {niche:'Окно в 3D',tariff:'Премиум+',price:'от 250 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Okna-PVH/5-premium-plus/',img:'img/okna-premium-plus.jpg'}]}
 ];
+// лента ниш на первом экране: собирается из NICHES, список дублируется для бесшовной прокрутки
+var mqh=NICHES.map(function(n){return '<a href="#'+n.id+'">'+n.title+'</a>'}).join('');
+document.getElementById('mq').innerHTML=mqh+mqh;
 document.getElementById('nn').innerHTML=NICHES.map(function(n){return '<a href="#'+n.id+'">'+n.title+'</a>'}).join('');
 document.getElementById('pf').innerHTML=NICHES.map(function(n,k){
   return '<div class="niche" id="'+n.id+'"><div class="niche-h"><div><h3>'+(k+1)+' '+n.title+' <span class="cnt">— '+n.works.length+' сайт'+(n.works.length==1?'':n.works.length>4?'ов':'а')+'</span></h3><p>'+(n.sub||('Пример: «'+n.company+'» — от визитки до флагманского сайта'))+'</p></div><div class="ar"><button type="button" aria-label="Назад" data-d="-1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button><button type="button" aria-label="Вперёд" data-d="1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div></div><div class="pf">'+
@@ -279,14 +299,15 @@ var ring=new THREE.Mesh(new THREE.TorusGeometry(3.1,.008,8,200),new THREE.MeshBa
 var ring2=ring.clone();ring2.scale.setScalar(.8);ring2.rotation.set(.4,0,1);G.add(ring2);
 
 // ключевые кадры по секциям: x — сдвиг объекта, cy/cz — камера, fov, yaw — поворот
-var K=[{x:1.9,cy:.3,cz:7,fov:45,yaw:0,tilt:0},{x:-1.9,cy:.6,cz:5.5,fov:38,yaw:1.4,tilt:.3},{x:2,cy:-.4,cz:4.6,fov:30,yaw:2.8,tilt:-.3},{x:-1.8,cy:2.4,cz:5.4,fov:36,yaw:4.2,tilt:.6},{x:0,cy:0,cz:10,fov:50,yaw:5.6,tilt:0},{x:0,cy:.4,cz:3.4,fov:34,yaw:7.2,tilt:.2}];
-var cur={x:1.9,cy:.3,cz:7,fov:45,yaw:0,tilt:0},sy=0;
+var K=[{x:0,cy:.3,cz:8,fov:45,yaw:0,tilt:0},{x:-1.9,cy:.6,cz:5.5,fov:38,yaw:1.4,tilt:.3},{x:2,cy:-.4,cz:4.6,fov:30,yaw:2.8,tilt:-.3},{x:-1.8,cy:2.4,cz:5.4,fov:36,yaw:4.2,tilt:.6},{x:0,cy:0,cz:10,fov:50,yaw:5.6,tilt:0},{x:0,cy:.4,cz:3.4,fov:34,yaw:7.2,tilt:.2}];
+var cur={x:0,cy:.3,cz:8,fov:45,yaw:0,tilt:0},sy=0;
 addEventListener('scroll',function(){sy=scrollY},{passive:true});
 function lp2(a,b,t){return a+(b-a)*t}
 function ease(t){return 1-Math.pow(1-t,3)}
-var bar=document.getElementById('bar'),links=document.querySelectorAll('.links [data-s]');
+var cwEl=document.getElementById('cw'),bar=document.getElementById('bar'),links=document.querySelectorAll('.links [data-s]');
 function frame(){requestAnimationFrame(frame);
  var tot=document.body.scrollHeight-innerHeight;bar.style.width=Math.min(sy/tot,1)*100+'%';
+ cwEl.style.opacity=.3+.7*Math.min(sy/innerHeight,1); // на первом экране 3D-фон приглушён, при прокрутке проявляется
  var idx=0,t=0;for(var i=0;i<secs.length-1;i++){var a=secs[i].offsetTop,b=secs[i+1].offsetTop;if(sy<b){idx=i;t=ease(Math.max(0,Math.min((sy-a)/(b-a),1)));break}idx=secs.length-1;t=1}
  var A=K[idx],B=K[Math.min(idx+1,K.length-1)],asp=Math.min(1,innerWidth/innerHeight/1.4);
  for(var k in cur){var tg=lp2(A[k],B[k],t);if(k=='x')tg*=asp;cur[k]=lp2(cur[k],tg,.05)}
