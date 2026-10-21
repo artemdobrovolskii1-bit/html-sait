@@ -50,6 +50,7 @@ h1 .l:nth-child(3){animation-delay:.34s}
 .hero{max-width:1100px}
 .lead{font-size:clamp(15px,1.4vw,18px);line-height:1.7;color:rgba(240,237,232,.7);max-width:560px;margin:28px auto 36px;animation:fi .8s .55s both}
 .hb{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fi .8s .7s both}
+#s0{padding-bottom:150px}
 .mq{position:absolute;left:0;right:0;bottom:34px;animation:fi .8s 1s both}
 .mq-t{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gray);margin-bottom:14px}
 .mq-w{overflow:hidden;border-top:1px solid rgba(240,237,232,.1);border-bottom:1px solid rgba(240,237,232,.1);padding:14px 0;-webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
@@ -133,7 +134,7 @@ h1 .l:nth-child(3){animation-delay:.34s}
 .rv.v{opacity:1;transform:none}
 @media(max-width:1100px){.hs{display:none}}
 @media(max-width:768px){nav{padding:18px 22px}.links a:not(.cta){display:none}.s{padding:0 22px 50px}.hs{display:none}.fg{grid-template-columns:1fr}.row{gap:22px}.s.r{text-align:left;justify-content:flex-start}.r .tag{justify-content:flex-start}.r .body{margin-left:0}.s{background:linear-gradient(90deg,rgba(10,10,12,.6),transparent)}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.mq-r{flex-wrap:wrap;justify-content:center;width:auto}.mq-w{-webkit-mask:none;mask:none}.rv{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.mq-w{overflow-x:auto;-webkit-mask:none;mask:none;scrollbar-width:none}.mq-w::-webkit-scrollbar{display:none}.mq-r .dup{display:none}.rv{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -265,7 +266,7 @@ var NICHES=[
 ];
 // лента ниш на первом экране: собирается из NICHES, список дублируется для бесшовной прокрутки
 var mqh=NICHES.map(function(n){return '<a href="#'+n.id+'">'+n.title+'</a>'}).join('');
-document.getElementById('mq').innerHTML=mqh+mqh;
+document.getElementById('mq').innerHTML=mqh+mqh.replace(/<a /g,'<a class="dup" aria-hidden="true" tabindex="-1" '); // вторая копия только для бесшовной прокрутки
 document.getElementById('nn').innerHTML=NICHES.map(function(n){return '<a href="#'+n.id+'">'+n.title+'</a>'}).join('');
 document.getElementById('pf').innerHTML=NICHES.map(function(n,k){
   return '<div class="niche" id="'+n.id+'"><div class="niche-h"><div><h3>'+(k+1)+' '+n.title+' <span class="cnt">— '+n.works.length+' сайт'+(n.works.length==1?'':n.works.length>4?'ов':'а')+'</span></h3><p>'+(n.sub||('Пример: «'+n.company+'» — от визитки до флагманского сайта'))+'</p></div><div class="ar"><button type="button" aria-label="Назад" data-d="-1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button><button type="button" aria-label="Вперёд" data-d="1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div></div><div class="pf">'+
@@ -303,16 +304,17 @@ var K=[{x:0,cy:.3,cz:8,fov:45,yaw:0,tilt:0},{x:-1.9,cy:.6,cz:5.5,fov:38,yaw:1.4,
 var cur={x:0,cy:.3,cz:8,fov:45,yaw:0,tilt:0},sy=0;
 addEventListener('scroll',function(){sy=scrollY},{passive:true});
 function lp2(a,b,t){return a+(b-a)*t}
-function ease(t){return 1-Math.pow(1-t,3)}
+function cr(a,b,c,d,t){var t2=t*t,t3=t2*t;return .5*(2*b+(c-a)*t+(2*a-5*b+4*c-d)*t2+(3*b-a-3*c+d)*t3)} // сплайн Катмулла–Рома: проходит через все ракурсы без изломов
 var cwEl=document.getElementById('cw'),bar=document.getElementById('bar'),links=document.querySelectorAll('.links [data-s]');
 function frame(){requestAnimationFrame(frame);
  var tot=document.body.scrollHeight-innerHeight;bar.style.width=Math.min(sy/tot,1)*100+'%';
  cwEl.style.opacity=.3+.7*Math.min(sy/innerHeight,1); // на первом экране 3D-фон приглушён, при прокрутке проявляется
- var idx=0,t=0;for(var i=0;i<secs.length-1;i++){var a=secs[i].offsetTop,b=secs[i+1].offsetTop;if(sy<b){idx=i;t=ease(Math.max(0,Math.min((sy-a)/(b-a),1)));break}idx=secs.length-1;t=1}
- var A=K[idx],B=K[Math.min(idx+1,K.length-1)],asp=Math.min(1,innerWidth/innerHeight/1.4);
- for(var k in cur){var tg=lp2(A[k],B[k],t);if(k=='x')tg*=asp;cur[k]=lp2(cur[k],tg,.05)}
- G.position.x=cur.x;G.rotation.y=cur.yaw+performance.now()*.00008;G.rotation.x=cur.tilt;
- inner.rotation.y-=.004;ring.rotation.z+=.002;ring2.rotation.y+=.003;
+ // равномерно по всей странице, без привязки к блокам: доля прокрутки 0…1 ведёт камеру по гладкой кривой через ракурсы K
+ var p=tot>0?Math.max(0,Math.min(sy/tot,1)):0,L=K.length-1,f=p*L,i=Math.min(Math.floor(f),L-1),t=f-i;
+ var K0=K[Math.max(i-1,0)],K1=K[i],K2=K[i+1],K3=K[Math.min(i+2,L)],asp=Math.min(1,innerWidth/innerHeight/1.4);
+ for(var k in cur){var tg=cr(K0[k],K1[k],K2[k],K3[k],t);if(k=='x')tg*=asp;cur[k]=lp2(cur[k],tg,.025)}
+ G.position.x=cur.x;G.rotation.y=cur.yaw+performance.now()*.00004;G.rotation.x=cur.tilt;
+ inner.rotation.y-=.002;ring.rotation.z+=.001;ring2.rotation.y+=.0015;
  cam.fov=cur.fov;cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();cam.position.set(0,cur.cy,cur.cz);cam.lookAt(0,0,0);
  R.render(sc,cam);
  var mid=innerHeight*.45,c=ids[0];ids.forEach(function(id){if(document.getElementById(id).getBoundingClientRect().top<=mid)c=id});
