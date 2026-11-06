@@ -232,7 +232,10 @@
 body{background:var(--bg);color:var(--fg);font-family:Inter,sans-serif;overflow-x:hidden}
 nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:24px 48px}
 nav::after{content:'';position:absolute;inset:0 0 auto;height:140px;background:linear-gradient(#0a0a0c 10%,rgba(10,10,12,.8) 50%,transparent);z-index:-1;pointer-events:none}
-.logo{font:600 13px Oswald;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;animation:fd .7s .2s both}
+.logo{font:600 13px Oswald;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;animation:fd .7s .2s both;display:flex;align-items:center;gap:14px}
+.logo img{width:40px;height:40px;border-radius:8px;flex:none;box-shadow:0 0 0 1px rgba(240,237,232,.18)}
+.logo i{font-style:normal}
+@media(max-width:768px){.logo img{width:34px;height:34px}.logo{gap:10px}.logo .lt{display:none}}
 .links{display:flex;gap:32px;align-items:center;animation:fd .7s .35s both}
 .links a{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--fg);text-decoration:none;opacity:.6;transition:.3s;cursor:pointer}
 .links a:hover,.links a.on{opacity:1;color:var(--acc)}
@@ -399,7 +402,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <body>
 <div id="bar"></div>
 <nav>
-  <div class="logo" onclick="scrollTo({top:0,behavior:'smooth'})">HTML_SAIT / Сайты на HTML</div>
+  <div class="logo" onclick="scrollTo({top:0,behavior:'smooth'})"><img src="img/logo-96.png" width="40" height="40" alt="Логотип HTML_SAIT"><span>HTML_SAIT<i class="lt"> / Сайты на HTML</i></span></div>
   <div class="links">
     <a href="#s1" data-s="s1">Почему HTML</a><a href="#s2" data-s="s2">Процесс</a><a href="#s3" data-s="s3">Тарифы</a><a href="#s4" data-s="s4">Примеры</a><a href="#faq" data-s="faq">Вопросы</a><a class="cta" href="#s5" data-s="s5">Заказать</a>
   </div>
