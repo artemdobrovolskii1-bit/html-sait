@@ -48,7 +48,8 @@
    },
    "sameAs": [
     "https://vk.ru/html_sait174",
-    "https://t.me/ArtemDobrovolskii"
+    "https://t.me/ArtemDobrovolskii",
+    "https://max.ru/u/f9LHodD0cOJj7DdjcgcDikiIPs8cmHkiWG41cVVQCbpDQ_i35Fb56YRwt5Q"
    ],
    "contactPoint": {
     "@type": "ContactPoint",
@@ -235,6 +236,7 @@ nav::after{content:'';position:absolute;inset:0 0 auto;height:140px;background:l
 .logo{font:600 13px Oswald;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;animation:fd .7s .2s both;display:flex;align-items:center;gap:14px}
 .logo img{width:40px;height:40px;border-radius:8px;flex:none;box-shadow:0 0 0 1px rgba(240,237,232,.18)}
 .logo i{font-style:normal}
+@media(max-width:1200px){.logo .lt{display:none}}
 @media(max-width:768px){.logo img{width:34px;height:34px}.logo{gap:10px}.logo .lt{display:none}}
 .links{display:flex;gap:32px;align-items:center;animation:fd .7s .35s both}
 .links a{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--fg);text-decoration:none;opacity:.6;transition:.3s;cursor:pointer}
@@ -258,7 +260,7 @@ main{position:relative;z-index:10}
 .r .tag{justify-content:flex-end}.c .tag{justify-content:center}
 .tag::before{content:'';width:36px;height:1px;background:var(--acc)}
 h1,h2{font-family:Oswald,sans-serif;text-transform:uppercase;font-weight:700;line-height:.95}
-h1{font-size:clamp(30px,8.4vw,150px);letter-spacing:-.01em;line-height:1.12}
+h1{font-size:clamp(30px,min(8.4vw,16vh),150px);letter-spacing:-.01em;line-height:1.12}
 h1 .l{white-space:nowrap}
 h2{font-size:clamp(38px,6vw,84px);margin-bottom:28px;line-height:1.08}
 .st{-webkit-text-stroke:1px var(--fg);color:transparent}
@@ -268,7 +270,7 @@ h1 .l:nth-child(3){animation-delay:.34s}
 .hero{max-width:1100px}
 .lead{font-size:clamp(15px,1.4vw,18px);line-height:1.7;color:rgba(240,237,232,.7);max-width:560px;margin:28px auto 36px;animation:fi .8s .55s both}
 .hb{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fi .8s .7s both}
-#s0{padding-bottom:150px}
+#s0{padding-top:110px;padding-bottom:150px} /* сверху — место под шапку, чтобы заголовок не залезал под неё на невысоких экранах */
 .mq{position:absolute;left:0;right:0;bottom:34px;animation:fi .8s 1s both}
 .mq-t{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gray);margin-bottom:14px}
 .mq-w{overflow:hidden;border-top:1px solid rgba(240,237,232,.1);border-bottom:1px solid rgba(240,237,232,.1);padding:14px 0;-webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
@@ -368,7 +370,13 @@ h1 .l:nth-child(3){animation-delay:.34s}
 .fq .ch input:checked+span{background:var(--acc);border-color:var(--acc);color:#000}
 .fq .ch input:focus-visible+span{outline:2px solid var(--acc);outline-offset:2px}
 .fq .ch small{opacity:.6;margin-left:4px}
-.fq .go{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.fq .go{display:flex;margin-top:8px}
+.fq .go .btn{justify-content:center;width:100%}
+.fq .pk{margin-top:16px;padding-top:16px;border-top:1px solid rgba(240,237,232,.12);animation:fu .4s both}
+.fq .pk-t{font-size:12px;letter-spacing:.06em;color:rgba(240,237,232,.6);margin-bottom:12px}
+.fq .pk-g{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.fq .pk-g .btn{justify-content:center;padding:15px 12px;border:0;cursor:pointer}
+.fq .pk-g .btn.ghost{grid-column:1/-1;border:1px solid rgba(240,237,232,.3)}
 .fq .go .btn{border:0;cursor:pointer}.fq .go .btn.ghost{border:1px solid rgba(240,237,232,.3)}
 .fq .nt{font-size:12px;line-height:1.6;color:rgba(240,237,232,.4);margin-top:16px}
 .fq .ok{display:none;font-size:13px;line-height:1.6;color:var(--acc);margin-top:14px}
@@ -389,6 +397,8 @@ h1 .l:nth-child(3){animation-delay:.34s}
 .hr{display:inline-flex;align-items:center;gap:10px;margin-top:22px;font-size:13px;letter-spacing:.04em;color:rgba(240,237,232,.7)}
 .hr i{width:8px;height:8px;border-radius:50%;background:var(--gray);flex:none}
 .hr.on i{background:#4ade80;box-shadow:0 0 0 4px rgba(74,222,128,.15)}
+.hr0{position:absolute;top:calc(env(safe-area-inset-top,0px) + 78px);left:48px;margin:0;font-size:12px;animation:fi .8s .5s both} /* статус под логотипом на первом экране */
+@media(max-width:768px){.hr0{left:22px;top:calc(env(safe-area-inset-top,0px) + 64px);font-size:11px}}
 @media(max-width:768px){#faq{padding-top:90px}.fa summary{font-size:16px;padding:18px 0}.fa p{padding-right:0;font-size:14px}.fa{padding:0 18px;margin-inline:-4px}}
 </style>
 <!-- Яндекс Метрика 113894703; цели: клик по мессенджеру, телефону, почте -->
@@ -411,6 +421,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 
 <main>
   <section class="s h" id="s0">
+    <div class="hr hr0" data-short="1"><i></i><span>На связи ежедневно 8:00–20:00</span></div>
     <div class="hero">
       <h1><span class="l">Сайты для</span><span class="l">вашего <span class="st">бизнеса</span></span></h1>
       <p class="lead">От 2 дней и от 15 000 ₽. Сайт ваш навсегда — без конструкторов и абонентской платы.</p>
@@ -496,11 +507,12 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
       <fieldset><legend>Какой сайт нужен</legend><div class="ch"><label><input type="radio" name="t" value="Старт (15 000 ₽)"><span>Старт<small>15 000 ₽</small></span></label><label><input type="radio" name="t" value="Витрина (25 000 ₽)"><span>Витрина<small>25 000 ₽</small></span></label><label><input type="radio" name="t" value="Магазин (55 000 ₽)"><span>Магазин<small>55 000 ₽</small></span></label><label><input type="radio" name="t" value="Премиум (от 100 000 ₽)"><span>Премиум<small>от 100 000 ₽</small></span></label><label><input type="radio" name="t" value="Премиум+ (от 250 000 ₽)"><span>Премиум+<small>от 250 000 ₽</small></span></label><label><input type="radio" name="t" value="не знаю, помогите выбрать" checked><span>Не знаю — подскажите</span></label></div></fieldset>
       <fieldset><legend>Когда нужен сайт</legend><div class="ch"><label><input type="radio" name="w" value="как можно скорее"><span>Как можно скорее</span></label><label><input type="radio" name="w" value="в течение месяца" checked><span>В течение месяца</span></label><label><input type="radio" name="w" value="пока присматриваюсь"><span>Пока присматриваюсь</span></label></div></fieldset>
       <fieldset><label for="fq-n">Как к вам обращаться</label><input type="text" id="fq-n" name="n" maxlength="60" placeholder="Имя" autocomplete="given-name"></fieldset>
-      <div class="go"><button class="btn" type="submit" data-to="wa">Отправить в WhatsApp →</button><button class="btn ghost" type="button" data-to="tg">Отправить в Telegram →</button></div>
+      <div class="go"><button class="btn" type="submit">Отправить заявку →</button></div>
+      <div class="pk" id="fq-pk" hidden><p class="pk-t">Куда отправить? Откроется чат со мной с готовым текстом</p><div class="pk-g"><button class="btn" type="button" data-to="vk">ВКонтакте</button><button class="btn" type="button" data-to="max">MAX</button><button class="btn" type="button" data-to="tg">Telegram</button><button class="btn" type="button" data-to="wa">WhatsApp</button><button class="btn ghost" type="button" data-to="mail">Почта</button></div></div>
       <p class="ok" id="fq-ok" role="status"></p>
-      <p class="nt">Откроется ваш мессенджер с готовым сообщением — останется нажать «Отправить». Сайт ничего не сохраняет. Отвечаю в течение дня.</p>
+      <p class="nt">Нажмите «Отправить заявку» и выберите, где вам удобнее: ВКонтакте, MAX, Telegram, WhatsApp или почта. Готовое сообщение подставится само. Сайт ничего не сохраняет. Отвечаю в течение дня.</p>
     </form>
-    <div class="bt"><div class="ct"><a class="btn" href="https://wa.me/79080647597?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D0%B0%D0%B9%D1%82" target="_blank" rel="noopener">WhatsApp →</a><a class="btn" href="https://t.me/ArtemDobrovolskii" target="_blank" rel="noopener">Telegram →</a><a class="btn ghost" href="https://vk.me/html_sait174" target="_blank" rel="noopener">Написать во ВКонтакте</a><a class="btn ghost" href="https://vk.ru/html_sait174" target="_blank" rel="noopener">Группа ВК</a></div><p>HTML_SAIT © 2026<br>Артём Добровольский · Сайты на HTML</p></div>
+    <div class="bt"><div class="ct"><a class="btn" href="https://wa.me/79080647597?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D0%B0%D0%B9%D1%82" target="_blank" rel="noopener">WhatsApp →</a><a class="btn" href="https://t.me/ArtemDobrovolskii" target="_blank" rel="noopener">Telegram →</a><a class="btn" href="https://max.ru/u/f9LHodD0cOJj7DdjcgcDikiIPs8cmHkiWG41cVVQCbpDQ_i35Fb56YRwt5Q" target="_blank" rel="noopener">MAX →</a><a class="btn ghost" href="https://vk.me/html_sait174" target="_blank" rel="noopener">Написать во ВКонтакте</a><a class="btn ghost" href="https://vk.ru/html_sait174" target="_blank" rel="noopener">Группа ВК</a></div><p>HTML_SAIT © 2026<br>Артём Добровольский · Сайты на HTML</p></div>
   </div></section>
 </main>
 
@@ -613,25 +625,24 @@ addEventListener('resize',function(){R.setSize(innerWidth,innerHeight)});
 </script>
 <script>
 /* Форма-квиз: собирает сообщение и открывает WhatsApp / Telegram */
-(function(){var f=document.getElementById('zayavka');if(!f)return;var ok=document.getElementById('fq-ok'),b=f.elements.b;
+(function(){var f=document.getElementById('zayavka');if(!f)return;var MAX_URL='https://max.ru/u/f9LHodD0cOJj7DdjcgcDikiIPs8cmHkiWG41cVVQCbpDQ_i35Fb56YRwt5Q';var ok=document.getElementById('fq-ok'),b=f.elements.b;
 function txt(){var n=f.elements.n.value.trim(),t='Здравствуйте! Хочу сайт.\nБизнес: '+b.value.trim()+'\nТариф: '+f.elements.t.value+'\nКогда нужен: '+f.elements.w.value;if(n)t+='\nИмя: '+n;return t}
 function goal(g){if(window.ym){ym(113894703,'reachGoal',g);ym(113894703,'reachGoal','form_send');ym(113894703,'reachGoal','contact')}}
-function copy(t){try{if(navigator.clipboard&&isSecureContext){navigator.clipboard.writeText(t);return}}catch(e){}var a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(e){}a.remove()}
+function copy(t){function fb(){var a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(e){}a.remove()}try{if(navigator.clipboard&&isSecureContext){navigator.clipboard.writeText(t).catch(fb);return}}catch(e){}fb()}
 function send(to){ok.classList.remove('on');if(!b.value.trim()){b.classList.add('er');b.focus();ok.textContent='Напишите, чем занимается ваш бизнес — так я сразу подскажу тариф.';ok.classList.add('on');return}
-var t=txt();if(to==='wa'){window.open('https://wa.me/79080647597?text='+encodeURIComponent(t),'_blank','noopener');goal('form_whatsapp');ok.textContent='Открываю WhatsApp — проверьте текст и нажмите «Отправить».'}
-else{copy(t);window.open('https://t.me/ArtemDobrovolskii?text='+encodeURIComponent(t),'_blank','noopener');goal('form_telegram');ok.textContent='Текст скопирован. Если в Telegram поле пустое — вставьте его (долгое нажатие → «Вставить») и отправьте.'}
-ok.classList.add('on')}
+var t=txt(),C={vk:['ВКонтакте','https://vk.me/html_sait174'],max:['MAX',MAX_URL],tg:['Telegram','https://t.me/ArtemDobrovolskii?text='+encodeURIComponent(t)]};if(to==='mail'){location.href='mailto:artemdobrovolskii@gmail.com?subject='+encodeURIComponent('Заявка на сайт: '+b.value.trim())+'&body='+encodeURIComponent(t);goal('form_email');ok.textContent='Открываю почту — проверьте письмо и нажмите «Отправить».'}else if(to==='wa'){window.open('https://wa.me/79080647597?text='+encodeURIComponent(t),'_blank','noopener');goal('form_whatsapp');ok.textContent='Открываю WhatsApp — проверьте текст и нажмите «Отправить».'}else{var c=C[to];copy(t);window.open(c[1],'_blank','noopener');goal(to==='tg'?'form_telegram':'form_'+to);ok.textContent='Текст скопирован. Если в '+c[0]+' поле пустое — вставьте его (долгое нажатие или Ctrl+V → «Вставить») и отправьте.'}ok.classList.add('on')}
 b.addEventListener('input',function(){b.classList.remove('er')});
-f.addEventListener('submit',function(e){e.preventDefault();send('wa')});
-f.querySelector('[data-to=tg]').addEventListener('click',function(){send('tg')});
+var pk=document.getElementById('fq-pk');
+f.addEventListener('submit',function(e){e.preventDefault();ok.classList.remove('on');if(!b.value.trim()){b.classList.add('er');b.focus();ok.textContent='Напишите, чем занимается ваш бизнес — так я сразу подскажу тариф.';ok.classList.add('on');return}pk.hidden=false;pk.scrollIntoView({behavior:'smooth',block:'nearest'});if(window.ym)ym(113894703,'reachGoal','form_open')});
+pk.querySelectorAll('[data-to]').forEach(function(x){x.addEventListener('click',function(){send(x.dataset.to)})});
 document.querySelectorAll('a[href="#s5"]').forEach(function(a){a.addEventListener('click',function(){setTimeout(function(){b.focus({preventScroll:true})},900)})});
 })();
 </script>
 <script>
 /* Часы работы: «сейчас на связи / не на связи» по времени Челябинска. Часы меняются здесь: H0–H1 */
-(function(){var el=document.getElementById('hr');if(!el)return;var H0=8,H1=20;
+(function(){var els=document.querySelectorAll('.hr');if(!els.length)return;var H0=8,H1=20;
 function upd(){var h,m;try{var p=new Intl.DateTimeFormat('ru-RU',{timeZone:'Asia/Yekaterinburg',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date());h=+p.find(function(x){return x.type==='hour'}).value;m=+p.find(function(x){return x.type==='minute'}).value}catch(e){var d=new Date(Date.now()+(new Date().getTimezoneOffset()+300)*60000);h=d.getHours();m=d.getMinutes()}
-var on=h>=H0&&h<H1;el.classList.toggle('on',on);el.querySelector('span').textContent=on?'Сейчас на связи — отвечу в течение часа · ежедневно '+H0+':00–'+H1+':00 по Челябинску':'Сейчас не на связи — отвечу после '+H0+':00 по Челябинску · на связи ежедневно '+H0+':00–'+H1+':00'}
+var on=h>=H0&&h<H1;els.forEach(function(el){el.classList.toggle('on',on);el.querySelector('span').textContent=el.dataset.short?(on?'Сейчас на связи':'Сейчас не на связи · отвечу после '+H0+':00'):(on?'Сейчас на связи — отвечу в течение часа · ежедневно '+H0+':00–'+H1+':00 по Челябинску':'Сейчас не на связи — отвечу после '+H0+':00 по Челябинску · на связи ежедневно '+H0+':00–'+H1+':00')})}
 upd();setInterval(upd,60000)})();
 </script>
 </body>
