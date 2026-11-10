@@ -567,7 +567,10 @@ var NICHES=[
  {id:'n-avto',title:'Автосервисы',company:'Светлый Бокс',sub:'Пример: автосервис «Светлый Бокс» — витрина с ценами и два 3D-сайта для сравнения',works:[
   {niche:'Пакеты ТО, прайс, запись',tariff:'Витрина',price:'25 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/avtoservis-vitrina/',img:'img/avto-vitrina.jpg'},
   {niche:'3D-диагностика BMW X5',tariff:'Премиум+',price:'от 250 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/avtoservis-bmw/',img:'img/avto-premium-plus-bmw.jpg'},
-  {niche:'3D-диагностика LADA',tariff:'Премиум+',price:'от 250 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Avtoservis/',img:'img/avto-premium-plus.jpg'}]}
+  {niche:'3D-диагностика LADA',tariff:'Премиум+',price:'от 250 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/Avtoservis/',img:'img/avto-premium-plus.jpg'}]},
+ {id:'n-moyka',title:'Автомойки',company:'AQUA SHINE',sub:'Пример: автомойка AQUA SHINE — 3D-сайт, где машина отмывается при прокрутке',works:[
+  {niche:'3D-мойка при прокрутке',tariff:'Премиум+',price:'от 250 000 ₽',url:'https://artemdobrovolskii1-bit.github.io/avtomoyka-3d/',img:'img/avtomoyka-3d.jpg',
+   desc:'Грязная машина отмывается по мере прокрутки, шкала чистоты, услуги и цены, онлайн-запись в WhatsApp, русский и английский'}]}
 ];
 // лента ниш на первом экране: собирается из NICHES, список дублируется для бесшовной прокрутки
 var mqh=NICHES.map(function(n){return '<a href="#'+n.id+'">'+n.title+'</a>'}).join('');
